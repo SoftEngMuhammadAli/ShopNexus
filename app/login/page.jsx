@@ -1,93 +1,121 @@
 "use client";
 
-import React from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { signIn } from "@/lib/auth/authClient";
+import Link from "next/link";
 
-const LoginPage = () => {
+export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const router = useRouter();
 
-  const handleLogin = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
-    router.push("/dashboard");
-  };
+
+    setError("");
+    setLoading(true);
+
+    try {
+      const result = await signIn.email({
+        email,
+        password,
+      });
+
+      if (result.error) {
+        setError(result.error.message ?? "Failed to sign in");
+      } else {
+        router.push("/dashboard");
+      }
+    } catch (err) {
+      setError("An unexpected error occurred");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
-    <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
-      {/* Left Section */}
-      <div className="hidden md:flex flex-col justify-center bg-red-500 p-10 text-white">
-        <div className="mx-auto max-w-md space-y-4">
-          <h1 className="text-4xl font-bold">Welcome to ShopBiz</h1>
-          <p className="text-sm leading-6 text-white/90">
-            Discover great products, manage your cart easily, and enjoy a clean
-            shopping experience built for learning and growth.
-          </p>
-        </div>
-      </div>
-
-      {/* Right Section */}
-      <div className="flex items-center justify-center bg-white px-6 py-10">
-        <div className="w-full max-w-md space-y-6 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-          <div className="space-y-2 text-center">
-            <h2 className="text-3xl font-bold text-slate-900">Login</h2>
-            <p className="text-sm text-slate-500">
-              Enter your email and password to access your account
-            </p>
-          </div>
-
-          <form onSubmit={handleLogin} className="space-y-5">
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
+      <Card className="w-full max-w-md border-gray-200 shadow-lg">
+        <CardHeader className="space-y-1">
+          <CardTitle className="text-2xl font-bold text-black">
+            Sign In
+          </CardTitle>
+          <CardDescription className="text-gray-600">
+            Enter your credentials to access your account
+          </CardDescription>
+        </CardHeader>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <CardContent className="space-y-4">
+            {error && (
+              <div className="rounded-md bg-destructive/15 p-3 text-sm text-destructive">
+                {error}
+              </div>
+            )}
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="text-gray-700">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
-                placeholder="Enter your email"
-                className="h-11"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+                className="border-gray-300 focus:border-primary focus:ring-primary"
               />
             </div>
-
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="text-gray-700">
+                Password
+              </Label>
               <Input
                 id="password"
                 type="password"
-                placeholder="Enter your password"
-                className="h-11"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                minLength={8}
+                className="border-gray-300 focus:border-primary focus:ring-primary"
               />
             </div>
-
-            <div className="text-right text-sm">
-              <Link
-                href="/forgot-password"
-                className="text-red-500 hover:text-red-600"
-              >
-                Forgot your password?
-              </Link>
-            </div>
-
-            <Button type="submit" className="w-full h-11">
-              Login
+          </CardContent>
+          <CardFooter className="flex flex-col space-y-4">
+            <Button
+              type="submit"
+              className="w-full bg-primary hover:bg-primary/90"
+              disabled={loading}
+            >
+              {loading ? "Signing in..." : "Sign In"}
             </Button>
-          </form>
-
-          <div className="text-center text-sm text-slate-600">
-            <p>
-              Don&apos;t have an account?{" "}
+            <p className="text-center text-sm text-gray-600">
+              Don't have an account?{" "}
               <Link
                 href="/register"
-                className="font-medium text-red-500 hover:text-red-600"
+                className="font-medium text-primary hover:underline"
               >
-                Register
+                Sign up
               </Link>
             </p>
-          </div>
-        </div>
-      </div>
+          </CardFooter>
+        </form>
+      </Card>
     </div>
   );
-};
-
-export default LoginPage;
+}
