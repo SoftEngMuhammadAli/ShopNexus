@@ -1,0 +1,12 @@
+import 'package:flutter/material.dart';
+
+class AdminDashboardScreen extends StatelessWidget {
+  const AdminDashboardScreen({Key? key}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('AdminDashboardScreen')),
+      body: Center(child: Text('AdminDashboardScreen')),
+    );
+  }
+}
