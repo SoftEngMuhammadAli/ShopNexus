@@ -9,6 +9,10 @@ import 'package:shop_nexus/screens/auth/login_screen.dart';
 import 'package:shop_nexus/screens/auth/register_screen.dart';
 import 'package:shop_nexus/screens/home/home_screen.dart';
 import 'package:shop_nexus/screens/products/products_screen.dart';
+import 'package:shop_nexus/screens/user/user_orders_screen.dart';
+import 'package:shop_nexus/screens/user/user_profile_screen.dart';
+import 'package:shop_nexus/screens/user/user_settings_screen.dart';
+import 'package:shop_nexus/screens/user/user_wishlist_screen.dart';
 
 class AppRoutes {
   static const String home = "/home";
@@ -21,6 +25,10 @@ class AppRoutes {
   static const String adminOrders = "/admin/orders";
   static const String adminCustomers = "/admin/customers";
   static const String adminSettings = "/admin/settings";
+  static const String userProfile = "/user/profile";
+  static const String userOrders = "/user/orders";
+  static const String userWishlist = "/user/wishlist";
+  static const String userSettings = "/user/settings";
   static const String productDetails = "/product-details";
 
   static final Map<String, WidgetBuilder> routes = {
@@ -34,5 +42,9 @@ class AppRoutes {
     adminOrders: (context) => const AdminOrdersScreen(),
     adminCustomers: (context) => const AdminCustomersScreen(),
     adminSettings: (context) => const AdminSettingsScreen(),
+    userProfile: (context) => const UserProfileScreen(),
+    userOrders: (context) => UserOrdersScreen(),
+    userWishlist: (context) => UserWishlistScreen(),
+    userSettings: (context) => const UserSettingsScreen(),
   };
 }

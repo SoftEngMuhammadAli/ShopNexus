@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_nexus/screens/products/details_screen.dart';
+import 'package:shop_nexus/routes/routers.dart';
 import 'package:shop_nexus/services/api_services.dart';
 import 'package:shop_nexus/theme/app_theme.dart';
 import 'package:shop_nexus/widgets/drawer.dart';
@@ -73,6 +74,33 @@ class HomeScreen extends StatelessWidget {
                       CustomSearchBar(onSearch: (value) {}),
                     ],
                   ),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _shortcutCard(
+                      context,
+                      icon: Icons.receipt_long,
+                      label: 'Orders',
+                      route: AppRoutes.userOrders,
+                    ),
+                    _shortcutCard(
+                      context,
+                      icon: Icons.favorite_border,
+                      label: 'Wishlist',
+                      route: AppRoutes.userWishlist,
+                    ),
+                    _shortcutCard(
+                      context,
+                      icon: Icons.person_outline,
+                      label: 'Profile',
+                      route: AppRoutes.userProfile,
+                    ),
+                  ],
                 ),
               ),
               const SizedBox(height: 24),
@@ -207,6 +235,55 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 28),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _shortcutCard(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required String route,
+  }) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => Navigator.pushNamed(context, route),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+          margin: const EdgeInsets.only(right: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withAlpha(0x0A),
+                blurRadius: 16,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  color: AppTheme.primary.withAlpha(0x1F),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(icon, color: AppTheme.primary),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                label,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
             ],
           ),
         ),

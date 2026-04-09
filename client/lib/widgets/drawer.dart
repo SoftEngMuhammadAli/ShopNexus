@@ -72,6 +72,12 @@ class CustomDrawer extends StatelessWidget {
               'Products',
               AppRoutes.products,
             ),
+            const Divider(height: 1, thickness: 1),
+            _buildTile(context, Icons.person_outline, 'My Profile', AppRoutes.userProfile),
+            _buildTile(context, Icons.receipt_long_outlined, 'My Orders', AppRoutes.userOrders),
+            _buildTile(context, Icons.favorite_border, 'Wishlist', AppRoutes.userWishlist),
+            _buildTile(context, Icons.settings_outlined, 'Account Settings', AppRoutes.userSettings),
+            const Divider(height: 1, thickness: 1),
             _buildTile(context, Icons.login_outlined, 'Login', AppRoutes.login),
             _buildTile(
               context,
