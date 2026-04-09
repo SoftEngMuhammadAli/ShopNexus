@@ -43,26 +43,46 @@ class AdminCustomersScreen extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         backgroundColor: AppTheme.primary.withAlpha(30),
-                        child: Text((customer['name'] as String)[0], style: const TextStyle(color: AppTheme.primary)),
+                        child: Text(
+                          (customer['name'] as String)[0],
+                          style: const TextStyle(color: AppTheme.primary),
+                        ),
                       ),
                       const SizedBox(width: 14),
                       Expanded(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(customer['name'] as String, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                            Text(
+                              customer['name'] as String,
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.w700),
+                            ),
                             const SizedBox(height: 6),
-                            Text(customer['email'] as String, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey.shade600)),
+                            Text(
+                              customer['email'] as String,
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: Colors.grey.shade600),
+                            ),
                           ],
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 10,
+                        ),
                         decoration: BoxDecoration(
                           color: AppTheme.secondary.withAlpha(30),
                           borderRadius: BorderRadius.circular(14),
                         ),
-                        child: Text('${customer['orders']} orders', style: TextStyle(color: AppTheme.secondary, fontWeight: FontWeight.w700)),
+                        child: Text(
+                          '${customer['orders']} orders',
+                          style: TextStyle(
+                            color: AppTheme.secondary,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ],
                   ),

@@ -18,37 +18,43 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: AppTheme.background,
       drawer: const CustomDrawer(),
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         title: const Text('Shop Nexus'),
         actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search_outlined)),
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications_none),
+            icon: const Icon(Icons.shopping_bag_outlined),
           ),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 16),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.all(24),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(28),
+                    borderRadius: BorderRadius.circular(32),
                     gradient: const LinearGradient(
-                      colors: [AppTheme.primary, AppTheme.secondary],
+                      colors: [AppTheme.primaryContainer, AppTheme.primary],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withAlpha(31),
-                        blurRadius: 24,
-                        offset: const Offset(0, 12),
+                        color: AppTheme.primary.withAlpha(41),
+                        blurRadius: 32,
+                        offset: const Offset(0, 18),
                       ),
                     ],
                   ),
@@ -56,49 +62,58 @@ class HomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Find Your Next Favorite',
+                        'Curating the Future of Style',
                         style: Theme.of(context).textTheme.headlineSmall
                             ?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w800,
                             ),
                       ),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 12),
                       Text(
-                        'Browse premium products, top deals, and trending items.',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
+                        'Explore premium collections, curated drops, and designer essentials in one place.',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.white70,
+                          height: 1.5,
+                        ),
                       ),
-                      const SizedBox(height: 20),
+                      const SizedBox(height: 24),
                       CustomSearchBar(onSearch: (value) {}),
+                      const SizedBox(height: 22),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 12,
+                        children: [
+                          _categoryChip(context, 'New Arrivals'),
+                          _categoryChip(context, 'Tech'),
+                          _categoryChip(context, 'Audio'),
+                        ],
+                      ),
                     ],
                   ),
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 8),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _shortcutCard(
-                      context,
-                      icon: Icons.receipt_long,
-                      label: 'Orders',
-                      route: AppRoutes.userOrders,
+                    Expanded(
+                      child: _infoTile(
+                        context: context,
+                        title: 'Free shipping',
+                        subtitle: 'On orders above Rs 2000',
+                        icon: Icons.local_shipping,
+                      ),
                     ),
-                    _shortcutCard(
-                      context,
-                      icon: Icons.favorite_border,
-                      label: 'Wishlist',
-                      route: AppRoutes.userWishlist,
-                    ),
-                    _shortcutCard(
-                      context,
-                      icon: Icons.person_outline,
-                      label: 'Profile',
-                      route: AppRoutes.userProfile,
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _infoTile(
+                        context: context,
+                        title: 'Secure checkout',
+                        subtitle: 'Encrypted payment methods',
+                        icon: Icons.lock_outline,
+                      ),
                     ),
                   ],
                 ),
@@ -109,24 +124,24 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Text(
-                      'Popular products',
+                      'Featured Products',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
                     const Spacer(),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/products');
+                        Navigator.pushNamed(context, AppRoutes.products);
                       },
-                      child: const Text('See all'),
+                      child: const Text('View all'),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 14),
               SizedBox(
-                height: 280,
+                height: 300,
                 child: FutureBuilder<List<dynamic>>(
                   future: apiServices.fetchProducts(),
                   builder: (context, snapshot) {
@@ -189,46 +204,102 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(22),
                   decoration: BoxDecoration(
-                    color: AppTheme.primary.withAlpha(242),
-                    borderRadius: BorderRadius.circular(24),
+                    color: AppTheme.surface,
+                    borderRadius: BorderRadius.circular(28),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppTheme.primary.withAlpha(20),
+                        blurRadius: 24,
+                        offset: const Offset(0, 12),
+                      ),
+                    ],
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(
+                        children: [
+                          Container(
+                            width: 50,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: AppTheme.primary.withAlpha(26),
+                              borderRadius: BorderRadius.circular(18),
+                            ),
+                            child: const Icon(
+                              Icons.local_offer,
+                              color: AppTheme.primary,
+                            ),
+                          ),
+                          const SizedBox(width: 14),
+                          Expanded(
+                            child: Text(
+                              'Nexus Seasonal Premium Sale',
+                              style: Theme.of(context).textTheme.titleMedium
+                                  ?.copyWith(fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 14),
                       Text(
-                        'Weekly Spotlight',
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
+                        'Experience premium offers on our top collections with limited-time savings.',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppTheme.onSurface.withAlpha(191),
                         ),
                       ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Save up to 30% on selected categories with fresh arrivals only this week.',
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
-                      ),
-                      const SizedBox(height: 18),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/products');
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          foregroundColor: AppTheme.primary,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16),
+                      const SizedBox(height: 20),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.products,
+                                );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppTheme.primary,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                              ),
+                              child: const Text('Explore Sale'),
+                            ),
                           ),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 14,
-                            horizontal: 18,
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: OutlinedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(
+                                  context,
+                                  AppRoutes.products,
+                                );
+                              },
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                  color: AppTheme.primary.withAlpha(51),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(18),
+                                ),
+                              ),
+                              child: Text(
+                                'View Lookbook',
+                                style: TextStyle(color: AppTheme.primary),
+                              ),
+                            ),
                           ),
-                        ),
-                        child: const Text('Explore now'),
+                        ],
                       ),
                     ],
                   ),
@@ -242,51 +313,72 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _shortcutCard(
-    BuildContext context, {
+  Widget _categoryChip(BuildContext context, String label) {
+    return Chip(
+      label: Text(
+        label,
+        style: Theme.of(
+          context,
+        ).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700),
+      ),
+      backgroundColor: AppTheme.surface,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+    );
+  }
+
+  Widget _infoTile({
+    required BuildContext context,
+    required String title,
+    required String subtitle,
     required IconData icon,
-    required String label,
-    required String route,
   }) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: () => Navigator.pushNamed(context, route),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
-          margin: const EdgeInsets.only(right: 8),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withAlpha(0x0A),
-                blurRadius: 16,
-                offset: const Offset(0, 10),
-              ),
-            ],
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: AppTheme.surface,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(10),
+            blurRadius: 18,
+            offset: const Offset(0, 10),
           ),
-          child: Column(
-            children: [
-              Container(
-                width: 42,
-                height: 42,
-                decoration: BoxDecoration(
-                  color: AppTheme.primary.withAlpha(0x1F),
-                  borderRadius: BorderRadius.circular(12),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 46,
+            height: 46,
+            decoration: BoxDecoration(
+              color: AppTheme.primary.withAlpha(20),
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Icon(icon, color: AppTheme.primary, size: 24),
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700),
                 ),
-                child: Icon(icon, color: AppTheme.primary),
-              ),
-              const SizedBox(height: 12),
-              Text(
-                label,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
-              ),
-            ],
+                const SizedBox(height: 6),
+                Text(
+                  subtitle,
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppTheme.onSurface.withAlpha(179),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

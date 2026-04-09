@@ -117,7 +117,7 @@ class AdminDashboardScreen extends StatelessWidget {
         'Total sales',
         '12.4K',
         Icons.show_chart,
-        AppTheme.accent,
+        AppTheme.surfaceContainerLow,
       ),
       _SummaryCardData('Orders', '1,980', Icons.shopping_bag, AppTheme.primary),
       _SummaryCardData('Products', '320', Icons.inventory_2, Colors.orange),
@@ -190,7 +190,12 @@ class AdminDashboardScreen extends StatelessWidget {
         AppTheme.secondary,
         AppRoutes.adminOrders,
       ),
-      _ActionTileData('Customers', Icons.people_outline, Colors.purple, AppRoutes.adminCustomers),
+      _ActionTileData(
+        'Customers',
+        Icons.people_outline,
+        Colors.purple,
+        AppRoutes.adminCustomers,
+      ),
       _ActionTileData(
         'Settings',
         Icons.settings_outlined,

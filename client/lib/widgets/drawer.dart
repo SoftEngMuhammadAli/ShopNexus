@@ -37,7 +37,7 @@ class CustomDrawer extends StatelessWidget {
             DrawerHeader(
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
-                  colors: [AppTheme.primary, AppTheme.secondary],
+                  colors: [AppTheme.primaryContainer, AppTheme.primary],
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -52,12 +52,12 @@ class CustomDrawer extends StatelessWidget {
                     'Shop Nexus',
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       color: Colors.white,
-                      fontWeight: FontWeight.w700,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Discover beautiful products',
+                    'Premium collections, curated for you',
                     style: Theme.of(
                       context,
                     ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
@@ -73,10 +73,30 @@ class CustomDrawer extends StatelessWidget {
               AppRoutes.products,
             ),
             const Divider(height: 1, thickness: 1),
-            _buildTile(context, Icons.person_outline, 'My Profile', AppRoutes.userProfile),
-            _buildTile(context, Icons.receipt_long_outlined, 'My Orders', AppRoutes.userOrders),
-            _buildTile(context, Icons.favorite_border, 'Wishlist', AppRoutes.userWishlist),
-            _buildTile(context, Icons.settings_outlined, 'Account Settings', AppRoutes.userSettings),
+            _buildTile(
+              context,
+              Icons.person_outline,
+              'My Profile',
+              AppRoutes.userProfile,
+            ),
+            _buildTile(
+              context,
+              Icons.receipt_long_outlined,
+              'My Orders',
+              AppRoutes.userOrders,
+            ),
+            _buildTile(
+              context,
+              Icons.favorite_border,
+              'Wishlist',
+              AppRoutes.userWishlist,
+            ),
+            _buildTile(
+              context,
+              Icons.settings_outlined,
+              'Account Settings',
+              AppRoutes.userSettings,
+            ),
             const Divider(height: 1, thickness: 1),
             _buildTile(context, Icons.login_outlined, 'Login', AppRoutes.login),
             _buildTile(

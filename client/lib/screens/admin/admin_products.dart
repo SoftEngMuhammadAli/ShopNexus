@@ -38,18 +38,22 @@ class AdminProductsScreen extends StatelessWidget {
                   }
                   if (snapshot.hasError) {
                     return Center(
-                      child: Text('Unable to load products', style: Theme.of(context).textTheme.bodyMedium),
+                      child: Text(
+                        'Unable to load products',
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     );
                   }
                   final products = snapshot.data ?? [];
                   return GridView.builder(
                     itemCount: products.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      childAspectRatio: 0.72,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                          childAspectRatio: 0.72,
+                        ),
                     itemBuilder: (context, index) {
                       final product = products[index];
                       return ProductCard(
