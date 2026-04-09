@@ -22,75 +22,85 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 200,
+        width: double.infinity,
+        constraints: const BoxConstraints(minHeight: 240, maxHeight: 260),
         decoration: AppTheme.cardDecoration(),
         clipBehavior: Clip.hardEdge,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 160,
+            SizedBox(
+              height: 140,
               width: double.infinity,
-              color: Colors.grey.shade100,
               child: imageUrl != null
                   ? Image.network(imageUrl!, fit: BoxFit.cover)
-                  : const Center(
-                      child: Icon(
-                        Icons.image_outlined,
-                        size: 56,
-                        color: Colors.grey,
+                  : Container(
+                      color: Colors.grey.shade100,
+                      child: const Center(
+                        child: Icon(
+                          Icons.image_outlined,
+                          size: 56,
+                          color: Colors.grey,
+                        ),
                       ),
                     ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title ?? 'Product Name',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title ?? 'Product Name',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    description ?? 'Short description here',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: Colors.grey.shade600,
-                          height: 1.4,
+                        const SizedBox(height: 8),
+                        Text(
+                          description ?? 'Short description here',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: Colors.grey.shade600,
+                                height: 1.4,
+                              ),
                         ),
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Rs ${price?.toStringAsFixed(0) ?? '0'}',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: AppTheme.accent,
-                              fontWeight: FontWeight.w700,
-                            ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          color: AppTheme.accent.withAlpha(36),
-                          borderRadius: BorderRadius.circular(12),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Rs ${price?.toStringAsFixed(0) ?? '0'}',
+                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                                color: AppTheme.accent,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
-                        child: const Icon(
-                          Icons.shopping_cart_outlined,
-                          size: 18,
-                          color: AppTheme.accent,
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            color: AppTheme.accent.withAlpha(36),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            Icons.shopping_cart_outlined,
+                            size: 18,
+                            color: AppTheme.accent,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

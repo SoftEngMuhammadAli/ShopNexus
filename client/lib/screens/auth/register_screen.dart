@@ -19,15 +19,15 @@ class RegisterScreen extends StatelessWidget {
               Text(
                 'Create Account',
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Sign up to access the best deals and curated collections.',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey.shade600,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: Colors.grey.shade600),
               ),
               const SizedBox(height: 28),
               Expanded(
@@ -67,10 +67,7 @@ class RegisterScreen extends StatelessWidget {
                         prefixIcon: const Icon(Icons.lock_outline),
                       ),
                       const SizedBox(height: 24),
-                      CustomButton(
-                        title: 'Register',
-                        onPressed: () {},
-                      ),
+                      CustomButton(title: 'Register', onPressed: () {}),
                       const SizedBox(height: 18),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

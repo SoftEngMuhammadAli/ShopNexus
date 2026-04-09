@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_nexus/screens/admin/admin_dashboard.dart';
 import 'package:shop_nexus/screens/auth/forget_password.dart';
 import 'package:shop_nexus/screens/auth/login_screen.dart';
 import 'package:shop_nexus/screens/auth/register_screen.dart';
@@ -11,6 +12,7 @@ class AppRoutes {
   static const String register = "/register";
   static const String forgetPassword = "/forget-password";
   static const String products = "/products";
+  static const String admin = "/admin";
   static const String productDetails = "/product-details";
 
   static final Map<String, WidgetBuilder> routes = {
@@ -19,5 +21,6 @@ class AppRoutes {
     register: (context) => const RegisterScreen(),
     forgetPassword: (context) => const ForgetPasswordScreen(),
     products: (context) => ProductsScreen(),
+    admin: (context) => const AdminDashboardScreen(),
   };
 }

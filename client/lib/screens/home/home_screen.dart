@@ -56,7 +56,8 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Find Your Next Favorite',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(
                               color: Colors.white,
                               fontWeight: FontWeight.w800,
                             ),
@@ -64,14 +65,12 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Text(
                         'Browse premium products, top deals, and trending items.',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.white70,
-                            ),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                       ),
                       const SizedBox(height: 20),
-                      CustomSearchBar(
-                        onSearch: (value) {},
-                      ),
+                      CustomSearchBar(onSearch: (value) {}),
                     ],
                   ),
                 ),
@@ -84,8 +83,8 @@ class HomeScreen extends StatelessWidget {
                     Text(
                       'Popular products',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w700,
-                          ),
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const Spacer(),
                     TextButton(
@@ -129,7 +128,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       scrollDirection: Axis.horizontal,
                       itemCount: products.length.clamp(0, 5),
-                      separatorBuilder: (context, index) => const SizedBox(width: 16),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 16),
                       itemBuilder: (context, index) {
                         final product = products[index];
                         return ProductCard(
@@ -163,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                   width: double.infinity,
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                  color: AppTheme.primary.withAlpha(242),
+                    color: AppTheme.primary.withAlpha(242),
                     borderRadius: BorderRadius.circular(24),
                   ),
                   child: Column(
@@ -172,16 +172,16 @@ class HomeScreen extends StatelessWidget {
                       Text(
                         'Weekly Spotlight',
                         style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                            ),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                       const SizedBox(height: 10),
                       Text(
                         'Save up to 30% on selected categories with fresh arrivals only this week.',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.white70,
-                            ),
+                        style: Theme.of(
+                          context,
+                        ).textTheme.bodyMedium?.copyWith(color: Colors.white70),
                       ),
                       const SizedBox(height: 18),
                       ElevatedButton(
@@ -195,7 +195,10 @@ class HomeScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
-                          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 18),
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 14,
+                            horizontal: 18,
+                          ),
                         ),
                         child: const Text('Explore now'),
                       ),

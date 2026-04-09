@@ -20,10 +20,7 @@ class ProductsDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.background,
-      appBar: AppBar(
-        title: const Text('Product Details'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Product Details'), centerTitle: true),
       body: Column(
         children: [
           Expanded(
@@ -33,9 +30,7 @@ class ProductsDetailScreen extends StatelessWidget {
                   Container(
                     height: 360,
                     width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                    ),
+                    decoration: const BoxDecoration(color: Colors.white),
                     child: Stack(
                       children: [
                         Positioned.fill(
@@ -106,40 +101,51 @@ class ProductsDetailScreen extends StatelessWidget {
                       children: [
                         Text(
                           title,
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                fontWeight: FontWeight.w800,
-                              ),
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(fontWeight: FontWeight.w800),
                         ),
                         const SizedBox(height: 10),
                         Row(
                           children: [
                             Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 6,
+                              ),
                               decoration: BoxDecoration(
                                 color: AppTheme.accent.withAlpha(31),
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: Row(
                                 children: const [
-                                  Icon(Icons.star, size: 18, color: AppTheme.accent),
+                                  Icon(
+                                    Icons.star,
+                                    size: 18,
+                                    color: AppTheme.accent,
+                                  ),
                                   SizedBox(width: 6),
-                                  Text('4.8', style: TextStyle(fontWeight: FontWeight.w700)),
+                                  Text(
+                                    '4.8',
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
                                 ],
                               ),
                             ),
                             const SizedBox(width: 12),
                             Text(
                               '(120 reviews)',
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: Colors.grey.shade600,
-                                  ),
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: Colors.grey.shade600),
                             ),
                           ],
                         ),
                         const SizedBox(height: 18),
                         Text(
                           'Rs ${price.toStringAsFixed(0)}',
-                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          style: Theme.of(context).textTheme.headlineSmall
+                              ?.copyWith(
                                 color: AppTheme.accent,
                                 fontWeight: FontWeight.w800,
                               ),
@@ -147,14 +153,14 @@ class ProductsDetailScreen extends StatelessWidget {
                         const SizedBox(height: 20),
                         Text(
                           'Product details',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 10),
                         Text(
                           description,
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          style: Theme.of(context).textTheme.bodyMedium
+                              ?.copyWith(
                                 color: Colors.grey.shade700,
                                 height: 1.6,
                               ),
@@ -164,9 +170,18 @@ class ProductsDetailScreen extends StatelessWidget {
                           spacing: 12,
                           runSpacing: 12,
                           children: [
-                            _buildFeatureChip('Free delivery', Icons.local_shipping_outlined),
-                            _buildFeatureChip('Secure payment', Icons.lock_outline),
-                            _buildFeatureChip('30-day return', Icons.refresh_outlined),
+                            _buildFeatureChip(
+                              'Free delivery',
+                              Icons.local_shipping_outlined,
+                            ),
+                            _buildFeatureChip(
+                              'Secure payment',
+                              Icons.lock_outline,
+                            ),
+                            _buildFeatureChip(
+                              '30-day return',
+                              Icons.refresh_outlined,
+                            ),
                           ],
                         ),
                         const SizedBox(height: 90),

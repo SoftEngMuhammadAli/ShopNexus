@@ -19,15 +19,15 @@ class LoginScreen extends StatelessWidget {
               Text(
                 'Welcome Back',
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                      fontWeight: FontWeight.w800,
-                    ),
+                  fontWeight: FontWeight.w800,
+                ),
               ),
               const SizedBox(height: 8),
               Text(
                 'Login to continue shopping beautiful products.',
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey.shade600,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(color: Colors.grey.shade600),
               ),
               const SizedBox(height: 28),
               Expanded(
@@ -71,10 +71,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 12),
-                      CustomButton(
-                        title: 'Login',
-                        onPressed: () {},
-                      ),
+                      CustomButton(title: 'Login', onPressed: () {}),
                       const SizedBox(height: 18),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

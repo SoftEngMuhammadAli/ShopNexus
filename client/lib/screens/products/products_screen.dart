@@ -14,10 +14,7 @@ class ProductsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.background,
-      appBar: AppBar(
-        title: const Text('Products'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Products'), centerTitle: true),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         child: Column(
@@ -50,12 +47,13 @@ class ProductsScreen extends StatelessWidget {
                   }
                   return GridView.builder(
                     itemCount: products.length,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                      childAspectRatio: 0.70,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          childAspectRatio: 0.70,
+                        ),
                     itemBuilder: (context, index) {
                       final product = products[index];
                       return ProductCard(
@@ -81,7 +79,7 @@ class ProductsScreen extends StatelessWidget {
                   );
                 },
               ),
-            )
+            ),
           ],
         ),
       ),
