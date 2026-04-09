@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_nexus/routes/routers.dart';
 import 'package:shop_nexus/theme/app_theme.dart';
 import 'package:shop_nexus/widgets/button.dart';
 
@@ -181,17 +182,20 @@ class AdminDashboardScreen extends StatelessWidget {
         'Manage products',
         Icons.inventory_2_outlined,
         AppTheme.primary,
+        AppRoutes.adminProducts,
       ),
       _ActionTileData(
-        'New order',
-        Icons.add_shopping_cart_outlined,
+        'Orders',
+        Icons.receipt_long_outlined,
         AppTheme.secondary,
+        AppRoutes.adminOrders,
       ),
-      _ActionTileData('Customers', Icons.people_outline, Colors.purple),
+      _ActionTileData('Customers', Icons.people_outline, Colors.purple, AppRoutes.adminCustomers),
       _ActionTileData(
         'Settings',
         Icons.settings_outlined,
         Colors.grey.shade700,
+        AppRoutes.adminSettings,
       ),
     ];
 
@@ -204,7 +208,11 @@ class AdminDashboardScreen extends StatelessWidget {
 
   Widget _buildActionTile(BuildContext context, _ActionTileData data) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        if (data.route != null) {
+          Navigator.pushNamed(context, data.route!);
+        }
+      },
       borderRadius: BorderRadius.circular(20),
       child: Container(
         width: MediaQuery.of(context).size.width / 2 - 24,
@@ -351,6 +359,7 @@ class _ActionTileData {
   final String title;
   final IconData icon;
   final Color color;
+  final String? route;
 
-  _ActionTileData(this.title, this.icon, this.color);
+  _ActionTileData(this.title, this.icon, this.color, [this.route]);
 }
