@@ -32,7 +32,7 @@ class ProductCard extends StatelessWidget {
             SizedBox(
               height: 140,
               width: double.infinity,
-              child: imageUrl != null
+              child: imageUrl != null && imageUrl!.isNotEmpty
                   ? Image.network(imageUrl!, fit: BoxFit.cover)
                   : Container(
                       color: Colors.grey.shade100,
@@ -59,16 +59,16 @@ class ProductCard extends StatelessWidget {
                           title ?? 'Product Name',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                         const SizedBox(height: 8),
                         Text(
                           description ?? 'Short description here',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          style: Theme.of(context).textTheme.bodySmall
+                              ?.copyWith(
                                 color: Colors.grey.shade600,
                                 height: 1.4,
                               ),
@@ -80,7 +80,8 @@ class ProductCard extends StatelessWidget {
                       children: [
                         Text(
                           'Rs ${price?.toStringAsFixed(0) ?? '0'}',
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          style: Theme.of(context).textTheme.titleSmall
+                              ?.copyWith(
                                 color: AppTheme.accent,
                                 fontWeight: FontWeight.w700,
                               ),
